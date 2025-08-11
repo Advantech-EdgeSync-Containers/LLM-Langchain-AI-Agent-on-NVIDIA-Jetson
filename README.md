@@ -1,7 +1,7 @@
 # LLM Langchain AI Agent on NVIDIA Jetson™
 
-**Version:** 1.0
-**Release Date:** May 2025
+**Version:** 2.0
+**Release Date:** August 2025
 **Copyright:** © 2025 Advantech Corporation. All rights reserved.
 
 ## Overview

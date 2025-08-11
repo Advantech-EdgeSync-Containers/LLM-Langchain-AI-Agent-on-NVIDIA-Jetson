@@ -1,9 +1,31 @@
 version: '2.4'
-# Advantech Jetson™ LLM Langchain AI Agent Docker Compose file
-# Created and maintained by Samir Singh <samir.singh@advantech.com>
-# This Docker Compose file configures the Jetson™ LLM Langchain AI Agent Development Container
-# with all necessary hardware acceleration settings.
+# ==========================================================================
+# Advantech Jetson™ LLM Langchain AI Agent Docker Compose File
+# ==========================================================================
+# Version:      2.0.0
+# Author:       Samir Singh <samir.singh@advantech.com> 
+# Created:      August 6 2025
+# Last Updated: --
+# 
+# Description:
+#   This Docker Compose file configures the Jetson™ LLM Langchain AI Agent
+#   Development Container with all necessary hardware acceleration settings
+#   for Advantech edge AI devices and NVIDIA Jetson platforms.
+#
+# Terms and Conditions:
+#   1. This software is provided by Advantech Corporation "as is" and any
+#      express or implied warranties, including, but not limited to, the implied
+#      warranties of merchantability and fitness for a particular purpose are
+#      disclaimed.
+#   2. In no event shall Advantech Corporation be liable for any direct, indirect,
+#      incidental, special, exemplary, or consequential damages arising in any way
+#      out of the use of this software.
+#   3. Redistribution and use in source and binary forms, with or without
+#      modification, are permitted provided that the above copyright notice and
+#      this permission notice appear in all copies.
+#
 # Copyright (c) 2025 Advantech Corporation. All rights reserved.
+# ==========================================================================
 services:
   langchain-agent-service:
     image: harbor.edgesync.cloud/nagarro-container-images/llm-langchain-ai-agent-on-nvidia-jetson:v1
