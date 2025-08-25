@@ -1,112 +1,84 @@
 #!/bin/bash
-
-
-
-# Created by Samir Singh <samir.singh@advantech.com>
-
-# Copyright (c) 2025 Advantech Corporation
-
-
-
-# This script is a wrapper that runs the encoded entrypoint script
-
-# The encoding protects the implementation details while allowing execution
-
-
-
-# Clear the terminal
-
+# ==========================================================================
+# Advantech Jetson Wise-Bench Hardware Diagnostics Script
+# ==========================================================================
+# Version:      1.0.0
+# Author:       Samir Singh <samir.singh@advantech.com>
+# Created:      March 22, 2025
+# Last Updated: May 16, 2025
+#
+# Description:
+#
+#   This script provides a comprehensive diagnostics and benchmarking tool
+#   for Advantech edge AI devices and NVIDIA Jetson platforms. It verifies
+#   hardware acceleration readiness across CUDA, TensorRT, OpenCV, PyTorch,
+#   TensorFlow, ONNX Runtime, GStreamer, and FFmpeg. 
+#
+#   The script also validates NVIDIA device nodes, prepares virtual encoders/
+#   decoders, and performs GPU acceleration checks with animated progress
+#   indicators, ASCII banners, and detailed tabular reports for easy analysis.
+#
+# Terms and Conditions:
+#   1. This software is provided by Advantech Corporation "as is" and any
+#      express or implied warranties, including, but not limited to, the implied
+#      warranties of merchantability and fitness for a particular purpose are
+#      disclaimed.
+#   2. In no event shall Advantech Corporation be liable for any direct, indirect,
+#      incidental, special, exemplary, or consequential damages arising in any way
+#      out of the use of this software.
+#   3. Redistribution and use in source and binary forms, with or without
+#      modification, are permitted provided that the above copyright notice and
+#      this permission notice appear in all copies.
+#
+# Copyright (c) 2025 Advantech Corporation. All rights reserved.
+# ==========================================================================
 clear
-
-
 LOG_FILE="/workspace/wise-bench.log"
 mkdir -p "$(dirname "$LOG_FILE")"
-
 # Append timestamp to start of each run
 {
   echo "==========================================================="
   echo ">>> Wise Bench Run Started at: $(date '+%Y-%m-%d %H:%M:%S')"
   echo "==========================================================="
 } >> "$LOG_FILE"
-
-# Redirect stdout & stderr to both console and file (append mode)
 exec > >(tee -a "$LOG_FILE") 2>&1
-
-# Simplified script with minimal formatting to avoid ANSI code issues
-
-
-
 # Display banner
-
 GREEN='\033[0;32m'
-
 RED='\033[0;31m'
-
 YELLOW='\033[0;33m'
-
 BLUE='\033[0;34m'
-
 CYAN='\033[0;36m'
-
 BOLD='\033[1m'
-
 PURPLE='\033[0;35m'
-
 NC='\033[0m' # No Color
-
-
-
 # Display fancy banner
-
 echo -e "${BLUE}${BOLD}+------------------------------------------------------+${NC}"
-
 echo -e "${BLUE}${BOLD}|    ${PURPLE}Advantech_COE Jetson Hardware Diagnostics Tool${BLUE}    |${NC}"
-
 echo -e "${BLUE}${BOLD}+------------------------------------------------------+${NC}"
-
 echo
 
 # Show Advantech COE ASCII logo - with COE integrated
 
 echo -e "${BLUE}"
-
 echo "       █████╗ ██████╗ ██╗   ██╗ █████╗ ███╗   ██╗████████╗███████╗ ██████╗██╗  ██╗     ██████╗ ██████╗ ███████╗"
-
 echo "      ██╔══██╗██╔══██╗██║   ██║██╔══██╗████╗  ██║╚══██╔══╝██╔════╝██╔════╝██║  ██║    ██╔════╝██╔═══██╗██╔════╝"
-
 echo "      ███████║██║  ██║██║   ██║███████║██╔██╗ ██║   ██║   █████╗  ██║     ███████║    ██║     ██║   ██║█████╗  "
-
 echo "      ██╔══██║██║  ██║╚██╗ ██╔╝██╔══██║██║╚██╗██║   ██║   ██╔══╝  ██║     ██╔══██║    ██║     ██║   ██║██╔══╝  "
-
 echo "      ██║  ██║██████╔╝ ╚████╔╝ ██║  ██║██║ ╚████║   ██║   ███████╗╚██████╗██║  ██║    ╚██████╗╚██████╔╝███████╗"
-
 echo "      ╚═╝  ╚═╝╚═════╝   ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝ ╚═════╝╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚══════╝"
 
 echo -e "${WHITE}                                  Center of Excellence${NC}"
 
 echo
 echo -e "${YELLOW}${BOLD}▶ Starting hardware acceleration tests...${NC}"
-
 echo -e "${CYAN}  This may take a moment...${NC}"
-
 echo
-
 sleep 7
-
-
-
-# Helper functions
-
 print_header() {
-
     echo
-
     echo "+--- $1 ----$(printf '%*s' $((47 - ${#1})) | tr ' ' '-')+"
-
     echo "|$(printf '%*s' 50 | tr ' ' ' ')|"
-
     echo "+--------------------------------------------------+"
-
 }
 
 
