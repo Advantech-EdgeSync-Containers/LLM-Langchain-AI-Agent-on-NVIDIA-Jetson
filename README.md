@@ -40,6 +40,25 @@ LLM-Langchain-AI-Agent-on-NVIDIA-Jetson/
 ├── efficient-prompting-for-compact-models.md # Craft better prompts for small and quantized language models
 ├── customization-readme.md                   # Customization, optimization & configuration guide
 ├── .gitignore                                # Git ignore specific files
+├── data/                                     # Data assets (diagrams, gifs, images)
+│   ├── architectures/
+│   │   └── ai-agent-llama.png                # LLaMA Agent architecture diagram
+│   ├── gifs/
+│   │   └── llama-ai-agent.gif                # LLaMA AI Agent demo GIF
+│   └── images/
+│       ├── ai-agent-llama-curl.png           # Example cURL request to LLaMA Agent
+│       ├── fast-api-curl.png                 # FastAPI cURL example
+│       ├── fast-api.png                      # FastAPI reference diagram
+│       ├── ggml-repo.png                     # GGML repository reference
+│       ├── gguf-convert.png                  # GGUF conversion guide
+│       ├── hugging-face-token.png            # Hugging Face token setup
+│       ├── kvcache-after.png                 # KV cache after optimization
+│       ├── kvcache-before.png                # KV cache before optimization
+│       ├── kvcache.png                       # KV cache illustration
+│       ├── langchain-wise-bench.png          # LangChain Wise Bench diagram
+│       ├── quantization.png                  # Quantization workflow
+│       ├── quantize-help.png                 # Quantization helper guide
+│       └── select-model-llm.png              # Model selection interface
 └── langchain-agent-service/                  # Core LangChain Agent API service
     ├── app.py                                # Main LangChain-FastAPI app
     ├── llm_loader.py                         # LLM loader (Ollama, Llama, etc.)
