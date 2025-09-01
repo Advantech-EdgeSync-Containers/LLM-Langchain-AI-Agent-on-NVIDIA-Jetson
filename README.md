@@ -184,7 +184,7 @@ Make sure you have SUSI installed before using AI Agent tools. Refer to the belo
 ### Installation
 ```
 # Clone the repository
-git clone https://github.com/Advantech-EdgeSync-Containers/Nagarro-Container-Project.git
+git clone https://github.com/Advantech-EdgeSync-Containers/LLM-Langchain-AI-Agent-on-NVIDIA-Jetson.git
 cd LLM-Langchain-on-NVIDIA-Jetson-AI-Agent
 
 # Make the build script executable
