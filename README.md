@@ -214,9 +214,12 @@ Allow some time for the OpenWebUI and LLM Langchain AI Agent on NVIDIA Jetson™
 ### AI Accelerator and Software Stack Verification (Optional)
 ```
 # Verify AI Accelerator and Software Stack Inside Docker Container
+# Under /workspace, run this command
 # Provide executable rights
-chmod +x /workspace/wise-bench.sh
-/workspace/wise-bench.sh
+chmod +x /wise-bench.sh
+
+# To run Wise-bench
+./wise-bench.sh
 ```
 
 ![langchain-wise-bench.png](..%2Fdata%2Fimages%2Flangchain-wise-bench.png)
