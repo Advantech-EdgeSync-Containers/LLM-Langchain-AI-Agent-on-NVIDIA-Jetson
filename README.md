@@ -3,6 +3,7 @@
 **Version:** 2.0
 **Release Date:** August 2025
 **Copyright:** © 2025 Advantech Corporation. All rights reserved.
+>  Check our [Troubleshooting Wiki](https://github.com/Advantech-EdgeSync-Containers/GPU-Passthrough-on-NVIDIA-Jetson/wiki/Advantech-Containers'-Troubleshooting-Guide) for common issues and solutions.
 
 ## Overview
 The LLM Langchain AI Agent on NVIDIA Jetson™ Image is a high-performance, modular AI chat solution for Jetson™ edge devices. It integrates Ollama with the Meta Llama 3.2 3B model for LLM inference, FastAPI-based Langchain middleware, and OpenWebUI. Supporting RAG, tool-augmented reasoning, conversational memory, and custom workflows, it features an AI agent with EdgeSync Device Library integration for natural language-driven control of peripherals and edge hardware. Optimized for Jetson™ acceleration, it enables real-time, context-aware edge AI applications.
