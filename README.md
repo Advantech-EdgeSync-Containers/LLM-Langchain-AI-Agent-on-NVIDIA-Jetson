@@ -209,7 +209,7 @@ Make sure you have SUSI installed before using AI Agent tools. Refer to the belo
 ```
 # Clone the repository
 git clone https://github.com/Advantech-EdgeSync-Containers/LLM-Langchain-AI-Agent-on-NVIDIA-Jetson.git
-cd LLM-Langchain-on-NVIDIA-Jetson-AI-Agent
+cd LLM-Langchain-AI-Agent-on-NVIDIA-Jetson
 
 # Make the build script executable
 chmod +x build.sh
