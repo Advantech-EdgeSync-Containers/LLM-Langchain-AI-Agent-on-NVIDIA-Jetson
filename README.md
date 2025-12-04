@@ -196,7 +196,6 @@ Make sure you have SUSI installed before using AI Agent tools. Refer to the belo
 
 -    After downloading the appropriate package for your device, follow the [SUSI installation guide](https://ess-wiki.advantech.com.tw/view/SUSI#Installation).
 
-## Before You Start
 - Ensure the following components are installed on your host system:
   - **Docker** (v28.1.1 or compatible)
   - **Docker Compose** (v2.39.1 or compatible)
