@@ -3,9 +3,23 @@
 **Version:** 2.0
 **Release Date:** November 2025
 **Copyright:** © 2025 Advantech Corporation. All rights reserved.
+>  Check our [Troubleshooting Wiki](https://github.com/Advantech-EdgeSync-Containers/GPU-Passthrough-on-NVIDIA-Jetson/wiki/Advantech-Containers'-Troubleshooting-Guide) for common issues and solutions.
 
 ## Overview
 The LLM Langchain AI Agent on NVIDIA Jetson™ Image is a high-performance, modular AI chat solution for Jetson™ edge devices. It integrates Ollama with the Meta Llama 3.2 3B model for LLM inference, FastAPI-based Langchain middleware, and OpenWebUI. Supporting RAG, tool-augmented reasoning, conversational memory, and custom workflows, it features an AI agent with EdgeSync Device Library integration for natural language-driven control of peripherals and edge hardware. Optimized for Jetson™ acceleration, it enables real-time, context-aware edge AI applications.
+
+## Host System Requirements
+
+| Component | Version/Requirement |
+|-----------|---------|
+| **JetPack** | 6.x |
+| **CUDA** | 12.6.68 |
+| **cuDNN** | 9.3.0.75 |
+| **TensorRT** | 10.3.0.30 |
+| **OpenCV** | 4.8.0 |
+
+* CUDA , CuDNN , TensorRT , OpenCV versions Depends on JetPack version 6.x
+* Please refer to the [NVIDIA JetPack Documentation](https://developer.nvidia.com/embedded/jetpack) for more details on compatible versions.
 
 ## Key Features
 
@@ -150,14 +164,18 @@ This image uses Meta Llama 3.2 3B instead of 1B (to avoid accuracy issues in the
 
 The following software components are available in the base image:
 
-| Component | Version   | Description                        |
-|-----------|-----------|------------------------------------|
-| CUDA®     | 12.6.68   | GPU computing platform             |
-| cuDNN     | 9.3.0.75  | Deep Neural Network library        |
-| TensorRT™ | 10.3.0.30 | Inference optimizer and runtime    |
-| VPI       | 3.2.4     | Vision Programming Interface       |
-| Vulkan    | 1.3.204   | Graphics and compute API           |
-| OpenCV    | 4.8.0     | Computer vision library with CUDA® |
+| Component    | Version        | Description                        |
+|--------------|----------------|------------------------------------|
+| CUDA®        | 12.6.68        | GPU computing platform             |
+| cuDNN        | 9.3.0.75       | Deep Neural Network library        |
+| TensorRT™    | 10.3.0.30      | Inference optimizer and runtime    |
+| PyTorch      | 2.0.0+nv23.02  | Deep learning framework            |
+| TensorFlow   | 2.12.0         | Machine learning framework         |
+| ONNX Runtime | 1.16.3         | Cross-platform inference engine    |
+| VPI          | 3.2.4          | Vision Programming Interface       |
+| Vulkan       | 1.3.204        | Graphics and compute API           |
+| OpenCV       | 4.8.0          | Computer vision library with CUDA® |
+| GStreamer    | 1.16.2         | Multimedia framework               |
 
 
 The following software components/packages are provided further inside the container image:
@@ -179,6 +197,12 @@ Make sure you have SUSI installed before using AI Agent tools. Refer to the belo
    For EPC-R7300 (ARM64, Ubuntu 20.04): `RISC/Standard/Linux/EPC/EPC-R7300/Ubuntu 20.04/ARM64` e.g [SUSI package](https://github.com/ADVANTECH-Corp/SUSI/tree/master/ReleasePackage/RISC/Standard/Linux/EPC/EPC-R7300/Ubuntu%2020.04/ARM64)
 
 -    After downloading the appropriate package for your device, follow the [SUSI installation guide](https://ess-wiki.advantech.com.tw/view/SUSI#Installation).
+
+- Ensure the following components are installed on your host system:
+  - **Docker** (v28.1.1 or compatible)
+  - **Docker Compose** (v2.39.1 or compatible)
+  - **NVIDIA Container Toolkit** (v1.11.0 or compatible)
+  - **NVIDIA Runtime** configured in Docker
 
 ## Quick Start
 
@@ -212,9 +236,12 @@ Allow some time for the OpenWebUI and LLM Langchain AI Agent on NVIDIA Jetson™
 ### AI Accelerator and Software Stack Verification (Optional)
 ```
 # Verify AI Accelerator and Software Stack Inside Docker Container
+# Under /workspace, run this command
 # Provide executable rights
-chmod +x /workspace/wise-bench.sh
-/workspace/wise-bench.sh
+chmod +x wise-bench.sh
+
+# To run Wise-bench
+./wise-bench.sh
 ```
 
 ![langchain-wise-bench.png](..%2Fdata%2Fimages%2Flangchain-wise-bench.png)
