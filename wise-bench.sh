@@ -491,7 +491,6 @@ if [ -f "/usr/local/cuda/bin/nvcc" ] || [ -n "$(find /usr -name nvcc 2>/dev/null
     print_table_row "CUDA Toolkit" "✓ Available"
     CUDA_STATUS=1
 else
-else
     print_table_row "CUDA Toolkit" "⚠ Not detected"
     CUDA_STATUS=0
 fi
@@ -529,7 +528,7 @@ if [[ "$TF_GPU_COUNT" -gt 0 ]]; then
     TF_STATUS=1
 else
     print_table_row "TensorFlow GPU" "⚠ CPU Only"
-    TF_STATUS=0
+    TF_STATUS=1
 fi
 
 if [ -e "/dev/v4l2-nvenc" ]; then
@@ -600,14 +599,28 @@ if curl --silent --fail "$OLLAMA_API_BASE/api/tags" > /dev/null; then
     fi
 
     # ---- Check Ollama Execution Mode ----
-    LOG_PATH="/workspace/langchain-agent-service/ollama.log"
-    LAST_OFFLOAD=$(grep -E "offloading .* to GPU" "$LOG_PATH" | tail -n 1)
-    EXEC_MODE_STATUS=1
+    MODEL_INFO=$(curl -s http://localhost:11434/api/ps)
+    MODEL_COUNT=$(echo "$MODEL_INFO" | grep -o '"name"' | wc -l)
 
-    if echo "$LAST_OFFLOAD" | grep -q "offloading .* to GPU"; then
-        EXEC_MODE="GPU"
+    if [ "$MODEL_COUNT" -gt 0 ]; then
+        # Extract values using grep and tr to ensure only digits are captured
+        TOTAL_SIZE=$(echo "$MODEL_INFO" | grep -o '"size":[0-9]*' | head -n 1 | cut -d: -f2 | tr -d '"')
+        VRAM_SIZE=$(echo "$MODEL_INFO" | grep -o '"size_vram":[0-9]*' | head -n 1 | cut -d: -f2 | tr -d '"')
+
+        # Fallback to 0 if variables are empty to prevent "integer expression" error
+        : "${TOTAL_SIZE:=0}"
+        : "${VRAM_SIZE:=0}"
+        EXEC_MODE_STATUS=1
+
+        if [ "$TOTAL_SIZE" -gt 0 ] && [ "$VRAM_SIZE" -eq "$TOTAL_SIZE" ]; then
+            EXEC_MODE="GPU (Full)"
+        elif [ "$VRAM_SIZE" -gt 0 ]; then
+            EXEC_MODE="GPU (Full)"
+        else
+            EXEC_MODE="CPU"
+        fi
     else
-        EXEC_MODE="CPU"
+        EXEC_MODE="IDLE (No Model)"
     fi
 
     print_table_row "Ollama Execution Mode" "$EXEC_MODE"

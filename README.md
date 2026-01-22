@@ -171,9 +171,7 @@ The following software components are available in the base image:
 | TensorRT™    | 10.3.0.30      | Inference optimizer and runtime    |
 | PyTorch      | 2.0.0+nv23.02  | Deep learning framework            |
 | TensorFlow   | 2.12.0         | Machine learning framework         |
-| ONNX Runtime | 1.16.3         | Cross-platform inference engine    |
-| VPI          | 3.2.4          | Vision Programming Interface       |
-| Vulkan       | 1.3.204        | Graphics and compute API           |
+| ONNX Runtime | 1.16.3         | Cross-platform inference engine    |          |
 | OpenCV       | 4.8.0          | Computer vision library with CUDA® |
 | GStreamer    | 1.16.2         | Multimedia framework               |
 
@@ -210,7 +208,7 @@ Make sure you have SUSI installed before using AI Agent tools. Refer to the belo
 ```
 # Clone the repository
 git clone https://github.com/Advantech-EdgeSync-Containers/LLM-Langchain-AI-Agent-on-NVIDIA-Jetson.git
-cd LLM-Langchain-on-NVIDIA-Jetson-AI-Agent
+cd LLM-Langchain-AI-Agent-on-NVIDIA-Jetson
 
 # Make the build script executable
 chmod +x build.sh
@@ -370,7 +368,7 @@ Ollama APIs are accessible on the default endpoint (unless modified). If needed,
 
 Inference Request:
 ```
-curl http://localhost_or_Jetson_IP:11434/api/generate -d '{
+curl http://localhost:11434/api/generate -d '{
   "model": "llama3.2:3b",
   "prompt": "Why is the sky blue?",
   "stream": false
@@ -459,12 +457,6 @@ data: {"id": "9b5a6076-df17-4958-9a76-6be6cbc1b91c", "object": "chat.completion.
 data: [DONE]
 ```
 Please note that the inference response will be in streaming mode only in the case of FastAPI.
-
-Sample Screenshot:
-
-![fast-api-curl.png](..%2Fdata%2Fimages%2Ffast-api-curl.png)
-
-The same requests can also be made from Fast-API swagger docs.
 
 ## Known Limitations
 
