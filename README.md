@@ -1,7 +1,7 @@
 # LLM Langchain AI Agent on NVIDIA Jetson™
 
 **Version:** 2.0
-**Release Date:** August 2025
+**Release Date:** November 2025
 **Copyright:** © 2025 Advantech Corporation. All rights reserved.
 >  Check our [Troubleshooting Wiki](https://github.com/Advantech-Containers/GPU-Passthrough-on-NVIDIA-Jetson/wiki/Advantech-Containers'-Troubleshooting-Guide) for common issues and solutions.
 
@@ -12,13 +12,13 @@ The LLM Langchain AI Agent on NVIDIA Jetson™ Image is a high-performance, modu
 
 | Component | Version/Requirement |
 |-----------|---------|
-| **JetPack** | 5.x |
-| **CUDA** | 11.4.315 |
-| **cuDNN** | 8.6.0.166 |
-| **TensorRT** | 8.5.2.2 |
-| **OpenCV** | 4.5.4 |
+| **JetPack** | 6.x |
+| **CUDA** | 12.6.68 |
+| **cuDNN** | 9.3.0.75 |
+| **TensorRT** | 10.3.0.30 |
+| **OpenCV** | 4.8.0 |
 
-* CUDA , CuDNN , TensorRT , OpenCV versions Depends on JetPack version 5.x
+* CUDA , CuDNN , TensorRT , OpenCV versions Depends on JetPack version 6.x
 * Please refer to the [NVIDIA JetPack Documentation](https://developer.nvidia.com/embedded/jetpack) for more details on compatible versions.
 
 ## Key Features
@@ -158,22 +158,22 @@ This image uses Meta Llama 3.2 3B instead of 1B (to avoid accuracy issues in the
 | GPU | NVIDIA® Ampere architecture with 1024 CUDA® cores |
 | DLA Cores | 1 (Deep Learning Accelerator) |
 | Memory | 4/8/16 GB shared GPU/CPU memory |
-| JetPack Version | 5.x |
+| JetPack Version | 6.0 |
 
 ## Software Components
 
 The following software components are available in the base image:
 
-| Component | Version | Description |
-|-----------|---------|-------------|
-| CUDA® | 11.4.315 | GPU computing platform |
-| cuDNN | 8.6.0 | Deep Neural Network library |
-| TensorRT™ | 8.5.2.2 | Inference optimizer and runtime |
-| PyTorch | 2.0.0+nv23.02 | Deep learning framework |
-| TensorFlow | 2.12.0 | Machine learning framework |
-| ONNX Runtime | 1.16.3 | Cross-platform inference engine |
-| OpenCV | 4.5.0 | Computer vision library with CUDA® |
-| GStreamer | 1.16.2 | Multimedia framework |
+| Component    | Version        | Description                        |
+|--------------|----------------|------------------------------------|
+| CUDA®        | 12.6.68        | GPU computing platform             |
+| cuDNN        | 9.3.0.75       | Deep Neural Network library        |
+| TensorRT™    | 10.3.0.30      | Inference optimizer and runtime    |
+| PyTorch      | 2.0.0+nv23.02  | Deep learning framework            |
+| TensorFlow   | 2.12.0         | Machine learning framework         |
+| ONNX Runtime | 1.16.3         | Cross-platform inference engine    |          |
+| OpenCV       | 4.8.0          | Computer vision library with CUDA® |
+| GStreamer    | 1.16.2         | Multimedia framework               |
 
 
 The following software components/packages are provided further inside the container image:
@@ -457,12 +457,6 @@ data: {"id": "9b5a6076-df17-4958-9a76-6be6cbc1b91c", "object": "chat.completion.
 data: [DONE]
 ```
 Please note that the inference response will be in streaming mode only in the case of FastAPI.
-
-Sample Screenshot:
-
-![fast-api-curl.png](..%2Fdata%2Fimages%2Ffast-api-curl.png)
-
-The same requests can also be made from Fast-API swagger docs.
 
 ## Known Limitations
 
